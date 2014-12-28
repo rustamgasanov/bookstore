@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <title>Bookstore</title>
     <link href="../libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script type="text/javascript" src="../libraries/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../libraries/underscore-min.js"></script>
+    <script type="text/javascript" src="../libraries/backbone-min.js"></script>
+    <script type="text/javascript" src="../libraries/backbone.marionette.min.js"></script>
+    <script type="text/javascript" src="../libraries/bootstrap/js/bootstrap.min.js"></script>
+
     <style type="text/css">
       /* @import url('http://twitter.github.com/bootstrap/assets/css/bootstrap.css'); */
 
@@ -29,6 +36,7 @@
         }
       }
     </style>
+
     <script id="CatalogLayout" type="text/template">
       <div id="Cart" class="row-fluid">
         <div class="row-fluid">
@@ -50,11 +58,13 @@
       </div>
     </script>
   </head>
+
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="brand" href="#">Books Online</a>
+
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link">Username</a>
@@ -64,15 +74,19 @@
               <li><a href="#history/orders">Order History</a></li>
             </ul>
           </div>
+
         </div>
       </div>
     </div>
+
     <div id="main" class="container-fluid">
       <div id="application">
       </div> 
     </div>
+
     <footer>
       <hr>  
     </footer>
+
   </body>
 </html>
