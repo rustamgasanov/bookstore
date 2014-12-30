@@ -1,12 +1,12 @@
-var BookStoreApp = new Backbone.Marionette.Application();
+var BookStoreApp = new Marionette.Application();
 
-var BookStoreController = Backbone.Marionette.Controller.extend({
+var BookStoreController = Marionette.Controller.extend({
   displayBooks: function() {
     console.log("I will display books...");
   }
 });
 
-var BookStoreRouter = Backbone.Marionette.AppRouter.extend({
+var BookStoreRouter = Marionette.AppRouter.extend({
   controller: BookStoreController,
   appRoutes: {
     "": "displayBooks"
