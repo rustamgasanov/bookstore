@@ -8,23 +8,22 @@ var BookStoreController = Backbone.Marionette.Controller.extend({
 
 var BookStoreRouter = Backbone.Marionette.AppRouter.extend({
   controller: BookStoreController,
-    appRoutes: {
-￼￼￼￼￼ "": "displayBooks"
-    }
+  appRoutes: {
+    "": "displayBooks"
+  }
 });
 
 BookStoreApp.addInitializer(function () {
-  var bookStoreController = new BookStoreController({
-    var bookStoreRouter = new BookStoreRouter({controller: controller});
-    console.log('Message from the addInitializer Method');
-  });
+  var controller = new BookStoreController();
+  var router = new BookStoreRouter({controller: controller});
+  console.log('Message from the addInitializer Method');
 })
 
-BookStoreApp.on('initialize:after', function () {
+BookStoreApp.on('start', function () {
   if (Backbone.history) {
     Backbone.history.start();
   }
-  console.log('Mesagge from initialize:after method');
+  console.log('Message from initialize:after method');
 });
 
 BookStoreApp.start();
