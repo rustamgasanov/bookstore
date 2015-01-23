@@ -7,7 +7,6 @@ var BookStoreController = Marionette.Controller.extend({
 });
 
 var BookStoreRouter = Marionette.AppRouter.extend({
-  controller: BookStoreController,
   appRoutes: {
     "": "displayBooks"
   }
