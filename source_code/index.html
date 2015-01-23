@@ -89,5 +89,12 @@
       <hr>  
     </footer>
 
+    <script id="books-template" type="text/html">
+      <ul>
+        <% _.each(items, function(item){ %>
+          <li><a href="book/<%= item.id %>"><%= item.name %></a></li>
+        <% }); %>
+      </ul>
+    </script>
   </body>
 </html>
