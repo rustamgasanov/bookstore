@@ -6,6 +6,17 @@ var BookStoreController = Marionette.Controller.extend({
   }
 });
 
+var BookModel = Backbone.Model.extend({
+  defaults: {
+    id: "1",
+    name: "First"
+  }
+});
+
+var BookCollection = Backbone.Collection.extend({
+  model: BookModel
+});
+
 var BookStoreRouter = Marionette.AppRouter.extend({
   appRoutes: {
     "": "displayBooks"
