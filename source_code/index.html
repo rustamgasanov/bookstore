@@ -95,7 +95,13 @@
           <li><a href="book/<%= item.id %>"><%= item.name %></a></li>
         <% }); %>
       </ul>
-      <%= funcForView() %>
+      // <%= funcForView() %>
+    </script>
+    <script id="category-template" type="text/html">
+        <% _.each(items, function(item){ %>
+          <a href="book/<%= item.id %>"><%= item.name %></a>
+        <% }); %>
+      // <%= funcForView() %>
     </script>
   </body>
 </html>

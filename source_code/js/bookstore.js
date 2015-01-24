@@ -17,6 +17,7 @@ var BookCollection = Backbone.Collection.extend({
   model: BookModel
 });
 
+// deprecated
 var BookListView = Marionette.ItemView.extend({
   template: '#books-template',
 
@@ -25,6 +26,18 @@ var BookListView = Marionette.ItemView.extend({
       return "Random helper function value: " + Math.random();
     }
   }
+})
+// /deprecated
+
+var CategoryView = Marionette.ItemView.extend({
+  tagName: 'li',
+  template: '#category-template'
+})
+
+var CategoriesView = Marionette.CollectionView.extend({
+  tagName: 'ul',
+  className: 'unstyled',
+  itemView: CategoryView
 })
 
 var BookStoreRouter = Marionette.AppRouter.extend({
@@ -49,15 +62,22 @@ BookStoreApp.on('start', function () {
 BookStoreApp.start();
 
 $(function() {
-  var bookModel = new BookModel();
-  var bookModel2 = new BookModel({ id: '2', name: 'Second' });
-  var bookModel3 = new BookModel({ id: '3', name: 'Third' });
-  var booksCollection = new BookCollection();
-  booksCollection.add(bookModel);
-  booksCollection.add(bookModel2);
-  booksCollection.add(bookModel3);
+  // var bookModel = new BookModel();
+  // var bookModel2 = new BookModel({ id: '2', name: 'Second' });
+  // var bookModel3 = new BookModel({ id: '3', name: 'Third' });
+  // var booksCollection = new BookCollection();
+  // booksCollection.add(bookModel);
+  // booksCollection.add(bookModel2);
+  // booksCollection.add(bookModel3);
+  var booksCollection = new BookCollection([
+    { id: '1', name: 'First' },
+    { id: '2', name: 'Second' },
+    { id: '3', name: 'Third' }
+  ]);
 
   var view = new BookListView({ collection: booksCollection, el: '#application' })
   view.render();
+  // var categoriesView = new CategoriesView({ collection: booksCollection })
+  // categoriesView.render();
 })
 
