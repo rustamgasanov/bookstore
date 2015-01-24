@@ -49,7 +49,7 @@ BookStoreApp.on('start', function () {
 BookStoreApp.start();
 
 $(function() {
-  // var bookModel1 = new BookModel({ id: 1, name 'First' });
+  // var bookModel1 = new BookModel({ id: 1, name: 'First' });
   // var bookModel2 = new BookModel({ id: 2, name: 'Second' });
   // var bookModel3 = new BookModel({ id: 3, name: 'Third' });
   // var booksCollection = new BookCollection();
