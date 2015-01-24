@@ -18,7 +18,13 @@ var BookCollection = Backbone.Collection.extend({
 });
 
 var BookListView = Marionette.ItemView.extend({
-  template: '#books-template'
+  template: '#books-template',
+
+  templateHelpers: {
+    funcForView: function() {
+      return "Random helper function value: " + Math.random();
+    }
+  }
 })
 
 var BookStoreRouter = Marionette.AppRouter.extend({
