@@ -1,4 +1,7 @@
 var BookStoreApp = new Marionette.Application();
+BookStoreApp.addRegions({
+  mainRegion: "#application"
+})
 
 var BookStoreController = Marionette.Controller.extend({
   displayBooks: function() {
@@ -49,7 +52,7 @@ BookStoreApp.on('start', function () {
 BookStoreApp.start();
 
 $(function() {
-  var catalogLayoutView = new CatalogLayoutView({el: '#application'});
-  catalogLayoutView.render();
+  var catalogLayoutView = new CatalogLayoutView();
+  BookStoreApp.mainRegion.show(catalogLayoutView);
 })
 
