@@ -26,6 +26,17 @@ var CategoriesCollection = Backbone.Collection.extend({
   model: CategoryModel
 })
 
+var CategoryView = Marionette.ItemView.extend({
+  tagName: 'li',
+  template: '#category-template'
+})
+
+var CategoriesView = Marionette.CollectionView.extend({
+  tagName: 'ul',
+  className: 'unstyled',
+  childView: CategoryView
+})
+
 var CatalogLayoutView = Marionette.LayoutView.extend({
   template: '#catalog-layout',
   regions: {
@@ -54,5 +65,13 @@ BookStoreApp.start();
 $(function() {
   var catalogLayoutView = new CatalogLayoutView();
   BookStoreApp.mainRegion.show(catalogLayoutView);
+  var categoriesCollection = new CategoriesCollection([
+    { name: 'category1', booksOnCategory: 5 },
+    { name: 'category2', booksOnCategory: 10 }
+  ]);
+  catalogLayoutView.categories.show(new CategoriesView(
+      { collection: categoriesCollection }
+    )
+  );
 })
 
