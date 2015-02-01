@@ -73,5 +73,12 @@ $(function() {
       { collection: categoriesCollection }
     )
   );
+
+  var regionManager = new Marionette.RegionManager();
+  regionManager.addRegion('math', '#math');
+  regionManager.get('math').show(new CategoriesView(
+      { collection: categoriesCollection }
+    )
+  );
 })
 
