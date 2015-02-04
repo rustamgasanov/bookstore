@@ -1,6 +1,6 @@
 var BookStoreApp = new Marionette.Application();
 BookStoreApp.addRegions({
-  mainRegion: "#application"
+  mainRegion: '#application'
 })
 
 var BookStoreController = Marionette.Controller.extend({
@@ -15,37 +15,56 @@ var BookStoreRouter = Marionette.AppRouter.extend({
   }
 });
 
-var CategoryModel = Backbone.Model.extend({
-  defaults: {
-    name: '',
-    booksOnCategory: 0
-  }
-})
+var HelperView = Backbone.Marionette.ItemView.extend({
+  template: '#sample-template2',
+    events: {
+      'click #myButton4': 'changeColor',
+      'click #myButton5': 'logSomething'
+    },
 
-var CategoriesCollection = Backbone.Collection.extend({
-  model: CategoryModel
-})
+    logSomething: function (){
+      console.log('something');
+    },
 
-var CategoryView = Marionette.ItemView.extend({
-  tagName: 'li',
-  template: '#category-template'
-})
+    changeColor: function (){
+      var hue = 'rgb(' + (Math.floor(Math.random() * 256)) +
+                   ',' + (Math.floor(Math.random() * 256)) +
+                   ',' + (Math.floor(Math.random() * 256)) + ')';
+      this.$('#dummy').css('color', hue);
+    }
+});
 
-var CategoriesView = Marionette.CollectionView.extend({
-  tagName: 'ul',
-  className: 'unstyled',
-  childView: CategoryView
-})
+var SampleView = Backbone.Marionette.ItemView.extend({
+    template : '#sample-template',
 
-var CatalogLayoutView = Marionette.LayoutView.extend({
-  template: '#catalog-layout',
-  regions: {
-    categories: '#categories',
-    products: '#products',
-    order: '#order',
-    book: '#book'
-  }
-})
+    initialize: function() {
+      this.container = new Backbone.ChildViewContainer();
+    },
+
+    events: {
+      'click #myButton': 'addView',
+      'click #myButton2': 'callChangeColorinViews',
+      'click #myButton3': 'countViews' 
+    },
+
+    addView: function() {
+      var helperView = new HelperView();
+      helperView.render();
+      this.$el.append(helperView.el);
+      this.container.add(helperView);
+    },
+
+    callChangeColorinViews: function() {
+      this.container.each(function(view){
+          view.changeColor();
+      });
+    },
+
+    countViews: function() {
+      this.$('#existentViews').text('currently we have ' + ' ' +
+        this.container.length + ' ' + ' views in the container.');
+    }
+});
 
 BookStoreApp.addInitializer(function () {
   var controller = new BookStoreController();
@@ -63,22 +82,7 @@ BookStoreApp.on('start', function () {
 BookStoreApp.start();
 
 $(function() {
-  var catalogLayoutView = new CatalogLayoutView();
-  BookStoreApp.mainRegion.show(catalogLayoutView);
-  var categoriesCollection = new CategoriesCollection([
-    { name: 'category1', booksOnCategory: 5 },
-    { name: 'category2', booksOnCategory: 10 }
-  ]);
-  catalogLayoutView.categories.show(new CategoriesView(
-      { collection: categoriesCollection }
-    )
-  );
-
-  var regionManager = new Marionette.RegionManager();
-  regionManager.addRegion('math', '#math');
-  regionManager.get('math').show(new CategoriesView(
-      { collection: categoriesCollection }
-    )
-  );
+  var sampleView = new SampleView({el: '#container'});
+  sampleView.render();
 })
 
