@@ -12,27 +12,6 @@ var BookStoreRouter = Marionette.AppRouter.extend({
   }
 });
 
-var BookModel = Backbone.Model.extend({
-  defaults: {
-    id: 0,
-    name: ''
-  }
-});
-
-var BookCollection = Backbone.Collection.extend({
-  model: BookModel
-});
-
-var BookListView = Marionette.ItemView.extend({
-  template: '#books-template',
-
-  templateHelpers: {
-    funcForView: function() {
-      return "Random helper function value: " + Math.random();
-    }
-  }
-})
-
 BookStoreApp.addInitializer(function () {
   var controller = new BookStoreController();
   var router = new BookStoreRouter({controller: controller});
@@ -46,6 +25,26 @@ BookStoreApp.on('start', function () {
   console.log('Message from initialize:after method');
 });
 
+var BookModel = Backbone.Model.extend({
+  defaults: {
+    id: 0,
+    name: ''
+  }
+});
+
+var BookCollection = Backbone.Collection.extend({
+  model: BookModel
+});
+
+var BookItemView = Marionette.ItemView.extend({
+  template: '#books-template',
+
+  templateHelpers: {
+    funcForView: function() {
+      return "Random helper function value: " + Math.random();
+    }
+  }
+})
 BookStoreApp.start();
 
 $(function() {
@@ -63,7 +62,7 @@ $(function() {
     { id: 3, name: 'Third' }
   ]);
 
-  var booksView = new BookListView({ collection: booksCollection, el: '#application' })
+  var booksView = new BookItemView({ collection: booksCollection, el: '#application' })
   booksView.render();
 })
 
