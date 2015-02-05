@@ -70,7 +70,7 @@ var SampleView = Backbone.Marionette.ItemView.extend({
       var helperView = new HelperView();
       helperView.render();
       this.$el.append(helperView.el);
-      // this.container.add(helperView);
+      this.container.add(helperView);
     },
 
     callChangeColorinViews: function() {
