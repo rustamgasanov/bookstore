@@ -12,27 +12,6 @@ var BookStoreRouter = Marionette.AppRouter.extend({
   }
 });
 
-var CategoryModel = Backbone.Model.extend({
-  defaults: {
-    name: '',
-    booksOnCategory: 0
-  }
-})
-
-var CategoriesCollection = Backbone.Collection.extend({
-  model: CategoryModel
-})
-
-var CatalogLayoutView = Marionette.LayoutView.extend({
-  template: '#catalog-layout',
-  regions: {
-    categories: '#categories',
-    products: '#products',
-    order: '#order',
-    book: '#book'
-  }
-})
-
 BookStoreApp.addInitializer(function () {
   var controller = new BookStoreController();
   var router = new BookStoreRouter({controller: controller});
@@ -45,6 +24,16 @@ BookStoreApp.on('start', function () {
   }
   console.log('Message from initialize:after method');
 });
+
+var CatalogLayoutView = Marionette.LayoutView.extend({
+  template: '#catalog-layout',
+  regions: {
+    categories: '#categories',
+    products: '#products',
+    order: '#order',
+    book: '#book'
+  }
+})
 
 BookStoreApp.start();
 
