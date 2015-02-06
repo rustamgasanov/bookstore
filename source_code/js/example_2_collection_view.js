@@ -12,6 +12,19 @@ var BookStoreRouter = Marionette.AppRouter.extend({
   }
 });
 
+BookStoreApp.addInitializer(function () {
+  var controller = new BookStoreController();
+  var router = new BookStoreRouter({controller: controller});
+  console.log('Message from the addInitializer Method');
+})
+
+BookStoreApp.on('start', function () {
+  if (Backbone.history) {
+    Backbone.history.start();
+  }
+  console.log('Message from initialize:after method');
+});
+
 var CategoryModel = Backbone.Model.extend({
   defaults: {
     name: '',
@@ -33,19 +46,6 @@ var CategoriesView = Marionette.CollectionView.extend({
   className: 'unstyled',
   childView: CategoryView
 })
-
-BookStoreApp.addInitializer(function () {
-  var controller = new BookStoreController();
-  var router = new BookStoreRouter({controller: controller});
-  console.log('Message from the addInitializer Method');
-})
-
-BookStoreApp.on('start', function () {
-  if (Backbone.history) {
-    Backbone.history.start();
-  }
-  console.log('Message from initialize:after method');
-});
 
 BookStoreApp.start();
 
