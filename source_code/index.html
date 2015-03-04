@@ -20,6 +20,7 @@
     </style>
 
     <script id="books-template" type="text/html">
+      <button class="btn-primary">Event aggregator trigger</button>
       <ul>
         <% _.each(items, function(item){ %>
           <li><a href="book/<%= item.id %>"><%= item.name %></a></li>
