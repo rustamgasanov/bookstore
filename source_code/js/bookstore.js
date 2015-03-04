@@ -51,10 +51,10 @@ $(function() {
 
 
   var vent = new Backbone.Wreqr.EventAggregator();
-  vent.on("my_event", function(){
+  BookStoreApp.vent.on("my_event", function(){
     console.log("im logging a message");
   });
-  vent.trigger("my_event");
+  BookStoreApp.vent.trigger("my_event");
 
 
   var booksView = new BookItemView({ collection: booksCollection, el: '#application' })
